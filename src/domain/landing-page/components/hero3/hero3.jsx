@@ -1,6 +1,7 @@
 // Hero2.jsx
 import { motion } from "framer-motion";
 import ProductCard from "../../../../general/common/product-card";
+import { FadeUp } from "../../../../utils/animation";
 
 const Hero3 = () => {
   const products = [
@@ -56,13 +57,19 @@ const Hero3 = () => {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="text-center text-gray-600 mt-4 max-w-2xl mx-auto text-lg"
+        className="text-center text-gray-600 mt-4 max-w-2xl mx-auto text-lg mb-9"
       >
         Discover our top-quality organic products, handpicked for you.
       </motion.p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-10 md:px-8 container mx-auto">
         {products.map((product, index) => (
-          <ProductCard key={index} {...product} />
+          <motion.div
+            variants={FadeUp(product.delay)}
+            initial="hidden"
+            whileInView={"visible"}
+          >
+            <ProductCard key={index} {...product} />
+          </motion.div>
         ))}
       </div>
     </>

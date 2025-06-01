@@ -1,9 +1,10 @@
 import foodIcon from "../../../../assets/icon/food-icon.png";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
+
 const Footer = () => {
   return (
-    <footer className="bg-[#f0fff4] text-gray-800 py-4 px-8">
+    <footer id="contact" className="bg-[#f0fff4] text-gray-800 py-4 px-8">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 mt-5">
           <div className="mb-6">

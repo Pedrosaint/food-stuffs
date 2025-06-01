@@ -46,8 +46,9 @@
 import { useState } from "react";
 import { navLinks } from "../../../../utils/nav-link";
 import { Link, useLocation } from "react-router-dom";
-import { HiMenu, HiX } from "react-icons/hi"; // Hamburger + Close icons
+import { HiMenu, HiX } from "react-icons/hi";
 import foodIcon from "../../../../assets/icon/food-icon.png";
+import { HashLink } from "react-router-hash-link";
 
 const Nav = () => {
   const location = useLocation();
@@ -67,7 +68,7 @@ const Nav = () => {
         <ul className="hidden md:flex space-x-8">
           {navLinks.map((link) => (
             <li key={link.id}>
-              <Link
+              <HashLink
                 to={link.path}
                 className={`text-sm font-semibold ${
                   location.pathname === link.path
@@ -76,7 +77,7 @@ const Nav = () => {
                 }`}
               >
                 {link.name}
-              </Link>
+              </HashLink>
             </li>
           ))}
         </ul>
