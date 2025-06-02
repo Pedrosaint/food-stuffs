@@ -7,12 +7,11 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 mt-5">
           <div className="mb-6">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center">
               <img src={foodIcon} alt="Logo" className="h-9 w-16" />
-              <span className="text-[#3b8021] font-bold text-lg">Dutch</span>
-              <span className="text-[#d4a029] font-semibold text-lg">
-                Seeds
-              </span>
+              <h1 className="text-[#3b8021] font-bold text-lg">
+                dozyfood<span className="text-[#d4a029] font-semibold">ltd</span>
+              </h1>
             </div>
             <p className="text-md mt-4">
               ODS Seeds leads to a significant contribution for the vegetable
@@ -67,7 +66,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-200 pt-4 text-center text-sm">
-          <p>© {new Date().getFullYear()} Dutch Seeds — Created by Pedro</p>
+          <p>© {new Date().getFullYear()} dozyfoodltd</p>
         </div>
       </div>
     </footer>

@@ -46,7 +46,7 @@
 import { useState } from "react";
 import { navLinks } from "../../../../utils/nav-link";
 import { Link, useLocation } from "react-router-dom";
-import { HiMenu, HiX } from "react-icons/hi"; // Hamburger + Close icons
+import { HiMenu, HiX } from "react-icons/hi"; 
 import foodIcon from "../../../../assets/icon/food-icon.png";
 
 const Nav = () => {
@@ -57,10 +57,11 @@ const Nav = () => {
     <nav className="bg-[#f0fff4] py-4 px-4 md:px-8">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
           <img src={foodIcon} alt="Logo" className="h-9 w-16" />
-          <span className="text-[#3b8021] font-bold text-lg">Dutch</span>
-          <span className="text-[#d4a029] font-semibold text-lg">Seeds</span>
+          <h1 className="text-[#3b8021] font-bold text-lg">
+            dozyfood<span className="text-[#d4a029] font-semibold">ltd</span>
+          </h1>
         </div>
 
         {/* Desktop Nav */}

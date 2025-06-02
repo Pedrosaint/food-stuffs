@@ -6,7 +6,7 @@ const Card = ({ title, image, bgColor }) => {
     >
       {/* Left section */}
       <div className="flex flex-col justify-end h-[70px]">
-        <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+        <h3 className="text-xl font-semibold mb-2">{title}</h3>
         <button className="text-white bg-yellow-500 hover:bg-yellow-600 text-md py-1 px-3 rounded cursor-pointer">
           View Shop →
         </button>
