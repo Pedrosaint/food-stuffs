@@ -73,7 +73,7 @@ const DashboardLayout = () => {
 
       {/* Sidebar for desktop */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-[#3b8021] text-white p-4 transform transition-transform duration-300 z-40
+        className={`fixed top-0 left-0 h-full w-64 bg-[#3f7d29] text-white p-4 transform transition-transform duration-300 z-40
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:static md:block`}
       >
@@ -112,7 +112,7 @@ const DashboardLayout = () => {
                   end={link.path === "/dashboard"}
                   className={({ isActive }) =>
                     `flex items-center space-x-2 p-2 rounded hover:bg-[#2d661a] ${
-                      isActive ? "bg-[#245214]" : ""
+                      isActive ? "bg-[#2d5f1c]" : ""
                     }`
                   }
                   onClick={() => setSidebarOpen(false)}
