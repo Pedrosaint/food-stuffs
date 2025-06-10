@@ -27,8 +27,8 @@ const ProductCard = ({ name, image, price, oldPrice, onSale }) => {
           )}
           <span className="text-green-400 text-md font-bold">${price}</span>
         </div>
-        <button className="bg-yellow-400 text-white px-6 py-2 text-md font-medium rounded-md flex items-center gap-2 mt-4 hover:bg-yellow-500 transition-colors cursor-pointer w-full justify-center">
-          <span>ADD TO CART</span>
+        <button className="bg-yellow-400 text-white px-3 md:px-6 py-2 text-sm md:text-md font-medium rounded-md flex items-center gap-2 mt-4 hover:bg-yellow-500 transition-colors cursor-pointer w-full justify-center">
+          <span className="">ADD TO CART</span>
           <GoArrowRight  size={24} />
         </button>
       </div>

@@ -21,7 +21,7 @@ const ProductTable = () => {
         price: "₦2000",
         stock: 10,
         description: "Fresh plantain",
-        image:""
+        image: "",
       },
       {
         id: "2",
@@ -60,8 +60,8 @@ const ProductTable = () => {
       transition={{ delay: 0.2 }}
     >
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6">
-        <h2 className="text-xl font-semibold">Reacent Purchases</h2>
-        <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 my-4 sm:my-2 w-full max-w-md bg-white dark:bg-gray-700">
+        <h2 className="text-xl font-semibold">Products</h2>
+        <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 my-4 sm:my-2 w-full max-w-md bg-white">
           <Search className="text-gray-500 dark:text-gray-400 mr-2" size={18} />
           <input
             type="text"
@@ -97,7 +97,7 @@ const ProductTable = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-700">
+          <tbody className="divide-y divide-gray-300">
             {loading || delayed
               ? Array.from({ length: 8 }).map((_, index) => (
                   <tr key={index}>

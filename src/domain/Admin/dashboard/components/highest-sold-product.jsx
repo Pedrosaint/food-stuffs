@@ -31,7 +31,7 @@ const HighestSoldProductsPie = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
     >
-      <h2 className="text-lg font-medium mb-4">Highest Sold Products</h2>
+      <h2 className="text-lg font-bold mb-4">Highest Sold Products</h2>
       <div className="h-80">
         {isLoading ? (
           <div className="flex justify-center items-center">

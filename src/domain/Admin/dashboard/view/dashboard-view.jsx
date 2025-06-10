@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { BarChart2, ShoppingBag, Users, Zap } from "lucide-react";
 import HighestSoldProducts from "../components/highest-sold-product";
-import ProductTable from "../components/product-table";
+import DashboardTable from "../components/dashboard-table";
 
 import StatCard from "../../../../general/common/stat-card";
 import SalesChart from "../../../Admin/dashboard/components/sales-chart";
-
 
 const DashboardView = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,7 +49,7 @@ const DashboardView = () => {
 
   return (
     <div className="flex-1 relative z-10">
-      <main className="mx-auto py-6 px-4 lg:px-0">
+      <main className="mx-auto py-6">
         {/* STATS */}
         <motion.div
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8"
@@ -94,7 +93,7 @@ const DashboardView = () => {
           <HighestSoldProducts />
         </div>
         <div className="mt-8">
-          <ProductTable />
+          <DashboardTable />
         </div>
       </main>
     </div>

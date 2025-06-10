@@ -25,7 +25,7 @@ const Hero2 = () => {
     <>
       <div className="relative  overflow-hidden bg-white">
         {/*leaf image*/}
-        <div className="absolute top-[-90px] left-4  md:top-[-30px] md:left-10 blur-sm opacity-90 rotate-[40deg]">
+        <div className="absolute top-[-130px] left-4  md:top-[-30px] md:left-10 blur-sm opacity-90 rotate-[40deg]">
           <motion.img
             variants={FadeRight(0.5)}
             initial="hidden"

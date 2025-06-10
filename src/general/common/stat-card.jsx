@@ -17,7 +17,7 @@ const StatCard = ({ name, icon: Icon, value, color, isLoading }) => {
             <Skeleton
               height={30}
               width={55}
-              style={{ borderRadius: "8px", marginTop: "", marginLeft: "10px" }}
+              style={{ borderRadius: "8px", marginTop: "", marginLeft: "10px", }}
             />
           </>
         ) : (

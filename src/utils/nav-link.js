@@ -6,7 +6,7 @@ export const navLinks = [
   },
   {
     id:2,
-    name: "Products",
+    name: "Vegetables",
     path: "/products",
   },
   {

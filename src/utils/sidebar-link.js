@@ -16,14 +16,14 @@ export const sidebarLinks = [
   {
     id: 2,
     name: "Products",
-    path: "/product",
+    path: "/dashboard/product",
     icon: ShoppingBag,
     color: "#8b5cf6",
   },
   {
     id: 3,
     name: "Orders",
-    path: "/orders",
+    path: "/dashboard/orders",
     icon: ShoppingCart,
     color: "#f59e0b",
   },
