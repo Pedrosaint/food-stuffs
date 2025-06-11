@@ -73,7 +73,7 @@ const DashboardLayout = () => {
 
       {/* Sidebar for desktop */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-[#3f7d29] text-white p-4 transform transition-transform duration-300 z-40
+        className={`fixed top-0 left-0 h-full w-64 bg-[#254918] text-white p-4 transform transition-transform duration-300 z-40
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:static md:block`}
       >
@@ -101,7 +101,7 @@ const DashboardLayout = () => {
                     setSidebarOpen(false);
                     setShowLogoutModal(true);
                   }}
-                  className="flex items-center space-x-2 p-2 rounded hover:bg-red-700 w-full text-left"
+                  className="flex items-center space-x-2 p-2 rounded w-full text-left cursor-pointer"
                 >
                   <link.icon size={20} style={{ color: link.color }} />
                   <span>{link.name}</span>
@@ -127,7 +127,7 @@ const DashboardLayout = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 bg-[#f0fff4] p-6 overflow-y-auto w-full">
+      <main className="flex-1 bg-[#fcfefc] p-6 overflow-y-auto w-full">
         {/* Mobile Topbar */}
         <div className="md:hidden flex justify-between items-center mb-4">
           <button onClick={toggleSidebar} className="text-gray-800">

@@ -1,55 +1,87 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Edit, Search, Trash2, Eye } from "lucide-react";
 import SkeletonCard from "../../../../general/common/skeleton-card";
 
 const DashboardTable = () => {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [delayed, setDelayed] = useState(true);
 
-  // Simulated fetch data without Firebase
+
   useEffect(() => {
-    // Replace this mock data with actual data source or props
-    const mockProducts = [
+    const mockOrders = [
       {
-        id: "1",
-        name: "Plantain",
-        category: "Food",
-        price: "₦2000",
-        stock: 10,
-        description: "Fresh plantain",
-        image:""
+        id: "ORD12345",
+        userName: "John Doe",
+        totalAmount: "12,000",
+        status: "Delivered",
+        date: "2025-06-01",
+        cartItems: [
+          { name: "Beans", price: "4000", quantity: 1 },
+          { name: "Carrot", price: "8000", quantity: 1 },
+        ],
+        shippingAddress: {
+          fullName: "John Doe",
+          address: "123 Main St",
+          city: "Lagos",
+          state: "Lagos",
+          country: "Nigeria",
+        },
       },
       {
-        id: "2",
-        name: "Apple",
-        category: "Food",
-        price: "₦3000",
-        stock: 5,
-        description: "Juicy apples",
-        image: "",
+        id: "ORD67890",
+        userName: "Jane Smith",
+        totalAmount: "7,500",
+        status: "Pending",
+        date: "2025-06-02",
+        cartItems: [{ name: "Mango", price: "7,500", quantity: 10 }],
+        shippingAddress: {
+          fullName: "Jane Smith",
+          address: "456 Oak Ave",
+          city: "Abuja",
+          state: "FCT",
+          country: "Nigeria",
+        },
       },
     ];
 
-    setProducts(mockProducts);
-    setFilteredProducts(mockProducts);
+    setOrders(mockOrders);
+    setFilteredOrders(mockOrders);
     setLoading(false);
-    setTimeout(() => setDelayed(false), 2000);
+    setTimeout(() => setDelayed(false), 1000);
   }, []);
 
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
 
-    const filtered = products.filter(
-      (product) =>
-        product.name.toLowerCase().includes(term) ||
-        product.category.toLowerCase().includes(term)
+    const filtered = orders.filter(
+      (order) =>
+        order.id?.toLowerCase().includes(term) ||
+        order.userName?.toLowerCase().includes(term)
     );
-    setFilteredProducts(filtered);
+    setFilteredOrders(filtered);
+  };
+
+  const handleView = (order) => {
+    navigate(`/dashboard/orders/order/${order.id}`, {
+      state: { mode: "view" },
+    });
+  };
+
+  const handleEdit = (order) => {
+    navigate(`/dashboard/orders/order/${order.id}`, {
+      state: { mode: "edit" },
+    });
+  };
+
+  const handleDelete = (orderId) => {
+    toast.warning("Delete functionality coming soon");
   };
 
   return (
@@ -60,7 +92,7 @@ const DashboardTable = () => {
       transition={{ delay: 0.2 }}
     >
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6">
-        <h2 className="text-xl font-semibold">Reacent Purchases</h2>
+        <h2 className="text-xl font-semibold">Recent orders</h2>
         <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 my-4 sm:my-2 w-full max-w-md bg-white">
           <Search className="text-gray-500 mr-2" size={18} />
           <input
@@ -73,79 +105,106 @@ const DashboardTable = () => {
         </div>
       </div>
 
-      <div className="overflow-y-auto h-96 border border-gray-300 rounded-lg">
-        <table className="min-w-full divide-y divide-gray-700">
-          <thead className="sticky top-0 z-10 bg-gray-200 text-gray-900">
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-gray-300">
+          <thead>
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                Name
+                Order Id
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                Category
+                Customer
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                Price
+                Total
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                Stock
+                Status
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                Description
+                Date
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
+
           <tbody className="divide-y divide-gray-300">
             {loading || delayed
-              ? Array.from({ length: 8 }).map((_, index) => (
+              ? Array.from({ length: 2 }).map((_, index) => (
                   <tr key={index}>
                     <td colSpan={6}>
                       <SkeletonCard />
                     </td>
                   </tr>
                 ))
-              : filteredProducts.map((product) => (
+              : filteredOrders.map((order) => (
                   <motion.tr
-                    key={product.id}
+                    key={order.id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <img
-                          src={product.image}
-                          className="md:h-10 md:w-10 w-5 h-5 rounded-full object-cover bg-orange-600"
-                        />
-                        <div className="ml-4 text-sm font-medium">
-                          {product.name}
-                        </div>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      {order.id}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      {order.userName}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      {order.totalAmount}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      <span
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          order.status === "Delivered"
+                            ? "bg-green-100 text-green-800"
+                            : order.status === "Processing"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {order.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      {order.date}
+                    </td>
+                    <td className="py-4 whitespace-nowrap text-sm text-gray-300 flex space-x-1">
+                      <div className="relative group">
+                        <button
+                          onClick={() => handleView(order)}
+                          className="p-2 text-blue-500 hover:text-blue-600 cursor-pointer"
+                        >
+                          <Eye size={20} />
+                        </button>
+                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 rounded opacity-0 group-hover:opacity-100">
+                          View
+                        </span>
                       </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      {product.category}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      {product.price}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      {product.stock}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      {product.description}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm flex space-x-2">
-                      <button className="text-blue-500">
-                        <Eye size={18} />
-                      </button>
-                      <button className="text-yellow-500">
-                        <Edit size={18} />
-                      </button>
-                      <button className="text-red-500">
-                        <Trash2 size={18} />
-                      </button>
+                      <div className="relative group">
+                        <button
+                          onClick={() => handleEdit(order)}
+                          className="p-2 text-yellow-500 hover:text-yellow-600 cursor-pointer"
+                        >
+                          <Edit size={20} />
+                        </button>
+                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 rounded opacity-0 group-hover:opacity-100">
+                          Edit
+                        </span>
+                      </div>
+                      <div className="relative group">
+                        <button
+                          onClick={() => handleDelete(order.id)}
+                          className="p-2 text-red-500 hover:text-red-600 cursor-pointer"
+                        >
+                          <Trash2 size={20} />
+                        </button>
+                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 rounded opacity-0 group-hover:opacity-100">
+                          Delete
+                        </span>
+                      </div>
                     </td>
                   </motion.tr>
                 ))}

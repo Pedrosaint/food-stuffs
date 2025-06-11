@@ -10,7 +10,9 @@ import { DashboardProductView } from "../domain/admin/products/view/dashboard-pr
 import AddNewProduct from "../domain/admin/products/components/add-new-product";
 import ProductLayout from "../general/layout/product-layout";
 import OrdersView from "../domain/admin/orders/view/orders-view";
-import LogoutView from "../domain/admin/logout/view/logout.view";
+import EditProduct from "../domain/admin/products/components/product[id]";
+import OrdersLayout from "../general/layout/order-layout";
+import Order from "../domain/admin/orders/components/order[id]";
 
 export default function appRouter() {
   return createBrowserRouter([
@@ -46,16 +48,26 @@ export default function appRouter() {
               path: "new-product",
               element: <AddNewProduct />,
             },
+            {
+              path: "product/:id",
+              element: <EditProduct />,
+            },
           ],
         },
         {
-          path: "orders",
-          element: <OrdersView />,
+         path: "orders",
+          element: <OrdersLayout />,
+          children: [
+            {
+              index: true,
+              element: <OrdersView />,
+            },
+            {
+              path: "order/:id",
+              element: <Order />,
+            },
+          ],
         },
-        // {
-        //   path: "logout",
-        //   element: <Logout />,
-        // },
       ],
     },
   ]);

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import SkeletonCard from "../common/skeleton-card"; 
 
 const StatCard = ({ name, icon: Icon, value, color, isLoading }) => {

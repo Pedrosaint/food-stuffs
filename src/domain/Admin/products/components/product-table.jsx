@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Edit, Search, Trash2, Eye } from "lucide-react";
 import SkeletonCard from "../../../../general/common/skeleton-card";
 
+
+
 const ProductTable = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [delayed, setDelayed] = useState(true);
 
-  // Simulated fetch data without Firebase
+
   useEffect(() => {
-    // Replace this mock data with actual data source or props
     const mockProducts = [
       {
         id: "1",
@@ -50,6 +53,18 @@ const ProductTable = () => {
         product.category.toLowerCase().includes(term)
     );
     setFilteredProducts(filtered);
+  };
+
+  const handleView = (productId) => {
+    navigate(`/dashboard/product/product/${productId}`, {
+      state: { mode: "view" },
+    });
+  };
+
+  const handleEdit = (productId) => {
+    navigate(`/dashboard/product/product/${productId}`, {
+      state: { mode: "edit" },
+    });
   };
 
   return (
@@ -99,7 +114,7 @@ const ProductTable = () => {
           </thead>
           <tbody className="divide-y divide-gray-300">
             {loading || delayed
-              ? Array.from({ length: 8 }).map((_, index) => (
+              ? Array.from({ length: 2 }).map((_, index) => (
                   <tr key={index}>
                     <td colSpan={6}>
                       <SkeletonCard />
@@ -114,12 +129,12 @@ const ProductTable = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
+                      <div className="flex items-center gap-6 min-w-0">
                         <img
                           src={product.image}
-                          className="h-10 w-10 rounded-full object-cover bg-orange-200"
+                          className="h-10 w-10 flex-shrink-0 rounded-full object-cover bg-orange-200"
                         />
-                        <div className="ml-4 text-sm font-medium">
+                        <div className="text-sm font-medium">
                           {product.name}
                         </div>
                       </div>
@@ -137,13 +152,18 @@ const ProductTable = () => {
                       {product.description}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm flex space-x-2">
-                      <button className="text-blue-500">
+                      <button
+                        onClick={() => handleView(product.id)}
+                        className="text-blue-500 cursor-pointer"
+                      >
                         <Eye size={18} />
                       </button>
-                      <button className="text-yellow-500">
+                      <button
+                      onClick={() => handleEdit(product.id)}
+                      className="text-yellow-500 cursor-pointer">
                         <Edit size={18} />
                       </button>
-                      <button className="text-red-500">
+                      <button className="text-red-500 cursor-pointer">
                         <Trash2 size={18} />
                       </button>
                     </td>
