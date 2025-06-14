@@ -111,8 +111,10 @@ const DashboardLayout = () => {
                   to={link.path}
                   end={link.path === "/dashboard"}
                   className={({ isActive }) =>
-                    `flex items-center space-x-2 p-2 rounded hover:bg-[#2d661a] ${
-                      isActive ? "bg-[#2d5f1c]" : ""
+                    `flex items-center space-x-2 p-2 rounded ${
+                      isActive
+                        ? "text-[#2d5f1c] bg-gray-50 hover:text-[#2d5f1c]"
+                        : "hover:text-[#c1cebd]"
                     }`
                   }
                   onClick={() => setSidebarOpen(false)}
